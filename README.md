@@ -43,8 +43,10 @@ a minute or so.
 the **private app repo** under `/legal`. When you change one, copy the change to the
 other so they don't drift.
 
-## Before publishing
+## Operator
 
-The legal pages still contain `[bracketed]` placeholders — Company Legal Name,
-Registered Address, Country/State — that must be filled in. App Store and Google
-Play both require a reachable privacy policy URL (`https://dorlio.com/privacy.html`).
+Dorlio is operated by **MIHAINTELLIGENCE SRL** (Focsani, Romania · CUI 51480000 ·
+Trade Register No. J2025019742006). Contact: **contact@mihaintelligence.com**.
+
+App Store and Google Play both require a reachable privacy policy URL
+(`https://dorlio.com/privacy.html`), so this site must be live before submission.
