@@ -53,6 +53,7 @@
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 84px; }
   body {
     margin: 0;
     font-family: var(--ui);
@@ -555,7 +556,7 @@
       </details>
       <details>
         <summary>What information do you collect about my child?</summary>
-        <p>Only what you enter to personalize a story — a first name, an age, and a chosen avatar emoji. We don’t collect a child’s contact information, location, photos, or anything else. Read the full <a href="./privacy.html">Privacy Policy</a>.</p>
+        <p>Only what you enter to personalize a story — a first name, an age, and a chosen avatar emoji. We don’t collect a child’s contact information, location, photos, or anything else. Read the full <a href="/privacy">Privacy Policy</a>.</p>
       </details>
       <details>
         <summary>Which devices does it run on?</summary>
@@ -598,8 +599,8 @@
         </div>
         <div class="foot-col">
           <h4>Legal</h4>
-          <a href="./privacy.html">Privacy Policy</a>
-          <a href="./terms.html">Terms of Use</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Use</a>
         </div>
         <div class="foot-col">
           <h4>Contact</h4>
@@ -608,7 +609,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <div>© <span id="year">2026</span> Dorlio. All rights reserved.</div>
+      <div>© <span id="year">2026</span> MIHAINTELLIGENCE SRL. All rights reserved.</div>
       <div>Made with care for bedtime. 🌙</div>
     </div>
   </div>
@@ -616,6 +617,27 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // In-page nav: smooth-scroll to the section WITHOUT leaving a #hash in the URL.
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth' });
+      history.replaceState(null, '', location.pathname + location.search);
+    });
+  });
+
+  // Arriving from another page (e.g. /privacy -> /#features): scroll, then clean the URL.
+  window.addEventListener('load', function () {
+    if (!location.hash) return;
+    var el = document.getElementById(location.hash.slice(1));
+    if (!el) return;
+    el.scrollIntoView();
+    history.replaceState(null, '', location.pathname + location.search);
+  });
+
   // Open a pre-filled email to join the waitlist (no backend required at launch).
   function dorlioNotify(e) {
     e.preventDefault();
